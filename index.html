@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Janani Jayarajan — UI/UX & Graphic Designer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --dark: #0F1923;
+    --accent: #E8552A;
+    --accent2: #F5A623;
+    --bg: #F7F4F0;
+    --mid: #1E2D3D;
+    --muted: #8A9BAD;
+    --white: #ffffff;
+    --card-bg: #ffffff;
+    --serif: 'Playfair Display', serif;
+    --sans: 'DM Sans', sans-serif;
+    --mono: 'Space Mono', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--mid);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ───────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 18px 60px;
+    background: rgba(15,25,35,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(232,85,42,0.25);
+  }
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    font-size: 12px; font-weight: 500; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--muted);
+    text-decoration: none; transition: color .3s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ── HERO ──────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    background: var(--dark);
+    display: flex; align-items: center;
+    position: relative; overflow: hidden;
+    padding: 100px 60px 60px;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 80% 50%, rgba(232,85,42,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 50% at 10% 80%, rgba(245,166,35,0.07) 0%, transparent 50%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image: linear-gradient(var(--accent) 1px, transparent 1px),
+                      linear-gradient(90deg, var(--accent) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-content { position: relative; max-width: 680px; }
+  .hero-eyebrow {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--accent); letter-spacing: 4px; text-transform: uppercase;
+    margin-bottom: 24px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block; width: 40px; height: 1px; background: var(--accent);
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(48px, 7vw, 88px);
+    font-weight: 900; line-height: 1.0;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero-role {
+    font-family: var(--serif); font-size: clamp(22px, 3.5vw, 36px);
+    font-weight: 400; color: var(--muted); font-style: italic;
+    margin-bottom: 32px;
+  }
+  .hero-desc {
+    font-size: 16px; line-height: 1.75; color: rgba(255,255,255,0.65);
+    max-width: 520px; margin-bottom: 44px;
+  }
+  .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    padding: 14px 32px; background: var(--accent); color: var(--white);
+    font-family: var(--sans); font-weight: 600; font-size: 13px; letter-spacing: 1px;
+    text-transform: uppercase; text-decoration: none; border: none; cursor: pointer;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    transition: all .3s;
+  }
+  .btn-primary:hover { background: var(--accent2); transform: translateY(-2px); }
+  .btn-ghost {
+    padding: 14px 32px; background: transparent; color: var(--white);
+    font-family: var(--sans); font-weight: 500; font-size: 13px; letter-spacing: 1px;
+    text-transform: uppercase; text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.2); transition: all .3s;
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+  .hero-stats {
+    position: absolute; right: 60px; bottom: 80px;
+    display: flex; gap: 48px;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: var(--serif); font-size: 40px; font-weight: 700;
+    color: var(--accent); display: block; line-height: 1;
+  }
+  .stat-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
+
+  .scroll-hint {
+    position: absolute; bottom: 32px; left: 60px;
+    font-family: var(--mono); font-size: 10px; color: var(--muted);
+    letter-spacing: 3px; text-transform: uppercase;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .scroll-hint::after {
+    content: ''; display: block; width: 40px; height: 1px; background: var(--muted);
+    animation: extend 2s ease-in-out infinite;
+  }
+  @keyframes extend { 0%,100%{width:20px} 50%{width:60px} }
+
+  /* ── SECTIONS SHARED ───────────────────────── */
+  section { padding: 100px 60px; }
+  .section-label {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--accent); letter-spacing: 4px; text-transform: uppercase;
+    margin-bottom: 12px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-label::before { content: ''; display:block; width:30px; height:1px; background:var(--accent); }
+  .section-title {
+    font-family: var(--serif); font-size: clamp(32px, 5vw, 52px);
+    font-weight: 700; line-height: 1.1; color: var(--mid);
+    margin-bottom: 16px;
+  }
+  .section-subtitle { font-size: 16px; color: var(--muted); line-height: 1.6; max-width: 560px; }
+
+  /* ── ABOUT ─────────────────────────────────── */
+  #about { background: var(--dark); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    margin-top: 60px;
+  }
+  .about-text p {
+    font-size: 16px; line-height: 1.8; color: rgba(255,255,255,0.7);
+    margin-bottom: 20px;
+  }
+  .about-text .highlight {
+    font-family: var(--serif); font-size: 20px; font-style: italic;
+    color: var(--accent); line-height: 1.5;
+  }
+  .about-right { display: flex; flex-direction: column; gap: 20px; }
+  .info-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(232,85,42,0.2);
+    padding: 20px 24px;
+    border-left: 3px solid var(--accent);
+  }
+  .info-card-label { font-family: var(--mono); font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .info-card-value { font-size: 15px; font-weight: 500; color: var(--white); }
+
+  /* ── SKILLS ────────────────────────────────── */
+  #skills { background: var(--bg); }
+  .skills-content { margin-top: 60px; }
+  .skills-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px;
+  }
+  .skill-card {
+    background: var(--white); padding: 24px;
+    border-bottom: 3px solid transparent;
+    transition: all .3s; position: relative; overflow: hidden;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+  }
+  .skill-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, transparent 70%, rgba(232,85,42,0.07));
+    opacity: 0; transition: opacity .3s;
+  }
+  .skill-card:hover { border-bottom-color: var(--accent); transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
+  .skill-card:hover::before { opacity: 1; }
+  .skill-icon { font-size: 28px; margin-bottom: 12px; }
+  .skill-name { font-weight: 600; font-size: 14px; color: var(--mid); margin-bottom: 6px; }
+  .skill-level { font-size: 11px; color: var(--muted); }
+  .skill-bar-bg { height: 3px; background: #eee; margin-top: 12px; border-radius: 2px; }
+  .skill-bar-fill { height: 100%; background: var(--accent); border-radius: 2px; }
+
+  /* ── PORTFOLIO ─────────────────────────────── */
+  #portfolio { background: var(--dark); }
+  .portfolio-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+    margin-top: 60px;
+  }
+  .portfolio-item {
+    position: relative; overflow: hidden; aspect-ratio: 4/3;
+    cursor: pointer;
+  }
+  .portfolio-item.featured { grid-column: span 2; }
+  .portfolio-mock {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    transition: transform .5s ease;
+    position: relative;
+  }
+  .portfolio-item:hover .portfolio-mock { transform: scale(1.05); }
+  .p1 { background: linear-gradient(135deg, #1a3a2e 0%, #2d6a4f 50%, #40916c 100%); }
+  .p2 { background: linear-gradient(135deg, #2d1b69 0%, #553d94 50%, #7b5ea7 100%); }
+  .p3 { background: linear-gradient(135deg, #7b2d00 0%, #c44b00 50%, #e8552a 100%); }
+  .p4 { background: linear-gradient(135deg, #001427 0%, #1e3a5f 50%, #2d6a9f 100%); }
+  .p5 { background: linear-gradient(135deg, #2d2d00 0%, #7a7a00 50%, #b5b500 100%); }
+  .portfolio-inner {
+    width: 80%; max-width: 280px; text-align: center; padding: 40px 20px;
+  }
+  .p-logo { font-family: var(--serif); font-size: 28px; font-weight: 900; color: white; letter-spacing: -1px; margin-bottom: 8px; }
+  .p-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+  .p-icon { font-size: 48px; margin-bottom: 12px; }
+  .p-shapes { display: flex; justify-content: center; gap: 8px; margin-top: 16px; }
+  .p-shape { width: 12px; height: 12px; border-radius: 2px; background: rgba(255,255,255,0.3); }
+  .p-shape:nth-child(2) { width: 24px; background: rgba(255,255,255,0.5); }
+
+  .portfolio-overlay {
+    position: absolute; inset: 0;
+    background: rgba(15,25,35,0.88);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    opacity: 0; transition: opacity .3s;
+    padding: 24px; text-align: center;
+  }
+  .portfolio-item:hover .portfolio-overlay { opacity: 1; }
+  .p-ov-title { font-family: var(--serif); font-size: 20px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+  .p-ov-type { font-family: var(--mono); font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+  .p-ov-desc { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+  .p-ov-link { margin-top: 16px; display: inline-block; padding: 8px 20px; border: 1px solid var(--accent); color: var(--accent); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; transition: all .2s; }
+  .p-ov-link:hover { background: var(--accent); color: white; }
+
+  /* ── EXPERIENCE ────────────────────────────── */
+  #experience { background: var(--bg); }
+  .timeline { margin-top: 60px; position: relative; }
+  .timeline::before {
+    content: ''; position: absolute; left: 180px; top: 0; bottom: 0;
+    width: 1px; background: linear-gradient(to bottom, var(--accent), transparent);
+  }
+  .timeline-item { display: flex; gap: 48px; margin-bottom: 56px; position: relative; }
+  .timeline-date {
+    width: 160px; flex-shrink: 0; text-align: right;
+    font-family: var(--mono); font-size: 12px; letter-spacing: 1px;
+    color: var(--accent); padding-top: 2px;
+  }
+  .timeline-dot {
+    position: absolute; left: 173px; top: 6px;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--accent); border: 3px solid var(--bg);
+    box-shadow: 0 0 0 1px var(--accent);
+  }
+  .timeline-content { flex: 1; }
+  .timeline-role { font-size: 19px; font-weight: 600; color: var(--mid); margin-bottom: 4px; }
+  .timeline-company { font-size: 13px; color: var(--accent); font-weight: 500; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+  .timeline-desc { font-size: 14px; line-height: 1.7; color: #555; }
+  .timeline-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .tag {
+    font-size: 11px; padding: 4px 12px;
+    background: rgba(232,85,42,0.08); color: var(--accent);
+    border: 1px solid rgba(232,85,42,0.25); letter-spacing: 1px;
+  }
+
+  /* ── CONTACT ───────────────────────────────── */
+  #contact {
+    background: var(--dark); text-align: center;
+    padding: 120px 60px;
+  }
+  #contact .section-title { color: var(--white); }
+  .contact-sub { font-size: 17px; color: rgba(255,255,255,0.5); max-width: 480px; margin: 16px auto 48px; line-height: 1.7; }
+  .contact-links { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
+  .contact-link {
+    display: flex; align-items: center; gap: 10px;
+    padding: 16px 28px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--white); text-decoration: none; font-size: 14px;
+    transition: all .3s;
+  }
+  .contact-link:hover { border-color: var(--accent); background: rgba(232,85,42,0.08); color: var(--accent); }
+  .contact-link .icon { font-size: 18px; }
+
+  /* ── FOOTER ────────────────────────────────── */
+  footer {
+    background: #080f15;
+    padding: 24px 60px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid rgba(232,85,42,0.15);
+  }
+  footer p { font-family: var(--mono); font-size: 10px; color: rgba(255,255,255,0.3); letter-spacing: 2px; text-transform: uppercase; }
+  footer span { color: var(--accent); }
+
+  /* ── ANIMATIONS ────────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-content > * { animation: fadeUp .7s ease both; }
+  .hero-eyebrow   { animation-delay: .1s; }
+  .hero h1        { animation-delay: .2s; }
+  .hero-role      { animation-delay: .3s; }
+  .hero-desc      { animation-delay: .4s; }
+  .hero-ctas      { animation-delay: .5s; }
+  .hero-stats     { animation: fadeUp .7s ease .6s both; }
+
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    section { padding: 80px 24px; }
+    .hero { padding: 100px 24px 80px; }
+    .hero-stats { position: static; margin-top: 48px; display: flex; gap: 32px; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .portfolio-grid { grid-template-columns: 1fr 1fr; }
+    .portfolio-item.featured { grid-column: span 2; }
+    .timeline::before { left: 0; }
+    .timeline-item { flex-direction: column; gap: 8px; padding-left: 24px; }
+    .timeline-date { width: auto; text-align: left; }
+    .timeline-dot { left: -6px; }
+    footer { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">JJ · Design</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#portfolio">Work</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Available for projects</div>
+    <h1>Janani<br><span>Jayarajan</span></h1>
+    <div class="hero-role">UI/UX & Graphic Designer</div>
+    <p class="hero-desc">
+      Crafting purposeful visual experiences — from brand identities and digital interfaces
+      to immersive social media campaigns. 2 years of turning ideas into pixels that matter.
+    </p>
+    <div class="hero-ctas">
+      <a href="#portfolio" class="btn-primary">View My Work</a>
+      <a href="#contact" class="btn-ghost">Get In Touch</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <span class="stat-num">2+</span>
+      <div class="stat-label">Years Exp.</div>
+    </div>
+    <div class="stat">
+      <span class="stat-num">15+</span>
+      <div class="stat-label">Projects</div>
+    </div>
+    <div class="stat">
+      <span class="stat-num">5</span>
+      <div class="stat-label">Tools</div>
+    </div>
+  </div>
+  <div class="scroll-hint">Scroll to explore</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">Who I Am</div>
+  <div class="section-title" style="color:var(--white)">Designing with<br><em>intent & soul</em></div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p class="highlight">"Every pixel has a purpose, every colour tells a story."</p>
+      <p>I'm a creative UI/UX and Graphic Designer based in Rajapalayam, Tamil Nadu, with 2 years of hands-on experience building brands and digital experiences that connect with real audiences.</p>
+      <p>My background in Information Technology (M.Sc. IT) gives me an edge — I think both visually and logically, bridging design and technology to deliver work that's not just beautiful, but functional.</p>
+      <p>From crafting nature-inspired social media visuals for Sunstra Naturals to building the full brand communication for Anjana Infotech, I bring dedication and creativity to every brief.</p>
+    </div>
+    <div class="about-right">
+      <div class="info-card">
+        <div class="info-card-label">Location</div>
+        <div class="info-card-value">Rajapalayam, Tamil Nadu</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">Experience</div>
+        <div class="info-card-value">2 Years in UI/UX & Graphic Design</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">Education</div>
+        <div class="info-card-value">M.Sc. Information Technology — 78%<br>VVV College for Women, Virudhunagar</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">Availability</div>
+        <div class="info-card-value">Open to Freelance & Full-Time Roles</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">Email</div>
+        <div class="info-card-value">jananij2020@gmail.com</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">Capabilities</div>
+  <div class="section-title">Tools & Skills</div>
+  <p class="section-subtitle">A versatile design toolkit spanning creative software, UI/UX methodology and front-end fundamentals.</p>
+  <div class="skills-content">
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon">🎨</div>
+        <div class="skill-name">Adobe Photoshop</div>
+        <div class="skill-level">Photo editing, compositing, digital art</div>
+        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:90%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">✏️</div>
+        <div class="skill-name">Adobe Illustrator</div>
+        <div class="skill-level">Vector design, logos, brand assets</div>
+        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:85%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🖥</div>
+        <div class="skill-name">Figma</div>
+        <div class="skill-level">UI/UX design, wireframes, prototyping</div>
+        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:88%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🌀</div>
+        <div class="skill-name">Canva</div>
+        <div class="skill-level">Social media, marketing templates</div>
+        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:95%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🌐</div>
+        <div class="skill-name">HTML & CSS</div>
+        <div class="skill-level">Web layouts, styling, responsive design</div>
+        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:80%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🏷</div>
+        <div class="skill-name">Brand Identity</div>
+        <div class="skill-level">Logo systems, style guides, typography</div>
+        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:87%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">📱</div>
+        <div class="skill-name">Social Media Design</div>
+        <div class="skill-level">Posts, stories, reels, campaigns</div>
+        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:92%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🖨</div>
+        <div class="skill-name">Print & Layout</div>
+        <div class="skill-level">Flyers, brochures, business cards</div>
+        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:85%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="section-label">Selected Work</div>
+  <div class="section-title" style="color:var(--white)">Portfolio</div>
+  <p class="section-subtitle" style="color:var(--muted)">Real projects, real clients — hover to explore each piece.</p>
+
+  <div class="portfolio-grid">
+
+    <div class="portfolio-item featured">
+      <div class="portfolio-mock p1">
+        <div class="portfolio-inner">
+          <div class="p-icon">🌿</div>
+          <div class="p-logo">Sunstra Naturals</div>
+          <div class="p-tag">Brand & Social Media</div>
+          <div class="p-shapes"><div class="p-shape"></div><div class="p-shape"></div><div class="p-shape"></div></div>
+        </div>
+      </div>
+      <div class="portfolio-overlay">
+        <div class="p-ov-title">Sunstra Naturals</div>
+        <div class="p-ov-type">Brand Identity · Social Media Design</div>
+        <div class="p-ov-desc">Designed cohesive social media graphics, product promotional visuals and brand identity assets. Maintained a consistent natural, earthy visual language across all touchpoints.</div>
+        <a href="https://www.instagram.com/sunstra_natural/" target="_blank" class="p-ov-link">View on Instagram ↗</a>
+      </div>
+    </div>
+
+    <div class="portfolio-item">
+      <div class="portfolio-mock p2">
+        <div class="portfolio-inner">
+          <div class="p-icon">🌺</div>
+          <div class="p-logo">Parasuram Nursery</div>
+          <div class="p-tag">Digital Marketing</div>
+          <div class="p-shapes"><div class="p-shape"></div><div class="p-shape"></div><div class="p-shape"></div></div>
+        </div>
+      </div>
+      <div class="portfolio-overlay">
+        <div class="p-ov-title">Parasuram Nursery Garden</div>
+        <div class="p-ov-type">Social Media · Marketing Posters</div>
+        <div class="p-ov-desc">Created engaging Instagram promotional designs, seasonal marketing posters and product highlight content for a garden nursery brand.</div>
+        <a href="https://www.instagram.com/parasuramnursery/" target="_blank" class="p-ov-link">View on Instagram ↗</a>
+      </div>
+    </div>
+
+    <div class="portfolio-item">
+      <div class="portfolio-mock p3">
+        <div class="portfolio-inner">
+          <div class="p-icon">💼</div>
+          <div class="p-logo">Anjana Infotech</div>
+          <div class="p-tag">Corporate Identity</div>
+          <div class="p-shapes"><div class="p-shape"></div><div class="p-shape"></div><div class="p-shape"></div></div>
+        </div>
+      </div>
+      <div class="portfolio-overlay">
+        <div class="p-ov-title">Anjana Infotech</div>
+        <div class="p-ov-type">Certificates · Business Cards · Branding</div>
+        <div class="p-ov-desc">Designed certificates, business cards and promotional visuals for brand communication and corporate identity reinforcement.</div>
+      </div>
+    </div>
+
+    <div class="portfolio-item">
+      <div class="portfolio-mock p4">
+        <div class="portfolio-inner">
+          <div class="p-icon">🎓</div>
+          <div class="p-logo">Certificate<br>Design</div>
+          <div class="p-tag">Print Design</div>
+          <div class="p-shapes"><div class="p-shape"></div><div class="p-shape"></div><div class="p-shape"></div></div>
+        </div>
+      </div>
+      <div class="portfolio-overlay">
+        <div class="p-ov-title">Certificate & Award Design</div>
+        <div class="p-ov-type">Print · Layout Design</div>
+        <div class="p-ov-desc">Professional certificate designs with elegant layouts, custom typography pairings and decorative border systems built in Illustrator.</div>
+      </div>
+    </div>
+
+    <div class="portfolio-item">
+      <div class="portfolio-mock p5">
+        <div class="portfolio-inner">
+          <div class="p-icon">💍</div>
+          <div class="p-logo">Wedding<br>Invitations</div>
+          <div class="p-tag">Invitation Design</div>
+          <div class="p-shapes"><div class="p-shape"></div><div class="p-shape"></div><div class="p-shape"></div></div>
+        </div>
+      </div>
+      <div class="portfolio-overlay">
+        <div class="p-ov-title">Wedding Invitation Design</div>
+        <div class="p-ov-type">Print · Digital Invitations</div>
+        <div class="p-ov-desc">Elegant, personalised wedding invitation suites combining traditional aesthetics with modern typography for Tamil weddings and destination events.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Career Path</div>
+  <div class="section-title">Experience &<br>Education</div>
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-date">2023 – Present</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-role">UI/UX & Graphic Designer</div>
+        <div class="timeline-company">Freelance / Self-Employed</div>
+        <div class="timeline-desc">
+          Delivering end-to-end design solutions for brands across industries. Leading visual identity projects, UI wireframing in Figma, and comprehensive social media design campaigns. Key clients include Sunstra Naturals and Parasuram Nursery Garden.
+        </div>
+        <div class="timeline-tags">
+          <span class="tag">Figma</span><span class="tag">Illustrator</span><span class="tag">Photoshop</span>
+          <span class="tag">Brand Identity</span><span class="tag">Social Media</span><span class="tag">UI/UX</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">2022 – 2023</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-role">Graphic Design Intern</div>
+        <div class="timeline-company">Anjana Infotech, Rajapalayam</div>
+        <div class="timeline-desc">
+          Completed professional training in Adobe Photoshop, Illustrator, Canva and Figma. Designed certificates, business cards and promotional visuals for brand communication. Gained practical skills in logo design, flyers, and social media poster creation.
+        </div>
+        <div class="timeline-tags">
+          <span class="tag">Photoshop</span><span class="tag">Illustrator</span><span class="tag">Canva</span>
+          <span class="tag">Logo Design</span><span class="tag">Print Design</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">2021 – 2023</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-role">M.Sc. Information Technology — 78%</div>
+        <div class="timeline-company">VVV College for Women, Virudhunagar</div>
+        <div class="timeline-desc">
+          Advanced studies in computing, information systems and software development. Applied technical knowledge to bridge the gap between design and technology.
+        </div>
+        <div class="timeline-tags">
+          <span class="tag">Information Technology</span><span class="tag">Web Technologies</span><span class="tag">HTML & CSS</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">2018 – 2021</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-role">B.Sc. Information Technology — 71%</div>
+        <div class="timeline-company">VVV College for Women, Virudhunagar</div>
+        <div class="timeline-desc">
+          Foundation in computer science and information technology. Developed interest in visual design and digital communication alongside technical coursework.
+        </div>
+        <div class="timeline-tags">
+          <span class="tag">Computer Science</span><span class="tag">Programming</span><span class="tag">Web Design</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Let's Connect</div>
+  <div class="section-title">Ready to Create<br><span style="color:var(--accent)">Together?</span></div>
+  <p class="contact-sub">Whether you need a full brand identity, a social media facelift, or a beautiful UI — I'd love to hear about your project.</p>
+  <div class="contact-links">
+    <a href="mailto:jananij2020@gmail.com" class="contact-link">
+      <span class="icon">✉️</span> jananij2020@gmail.com
+    </a>
+    <a href="tel:9095616235" class="contact-link">
+      <span class="icon">📞</span> +91 9095616235
+    </a>
+    <a href="https://www.instagram.com/sunstra_natural/" target="_blank" class="contact-link">
+      <span class="icon">📸</span> Instagram Portfolio
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2024 <span>Janani Jayarajan</span> — UI/UX & Graphic Designer</p>
+  <p>Rajapalayam, Tamil Nadu, India</p>
+</footer>
+
+</body>
+</html>
